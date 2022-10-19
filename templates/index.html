@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block bodyblock %}
+  {% if not fileupload %}
+    <div class="container">
+      <div class="starter-template">
+        <h1>Bootstrap starter template</h1>
+        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+      </div>
+
+      <form class="form-upload" id="target" action="" method="POST" enctype="multipart/form-data">
+        <div class="upload-area">
+            <i class="fas fa-cloud-upload-alt"></i>
+            
+            <label>
+              <input type="file" class="js-upload-file" name="upload_file" id="input-files" required>
+              <!-- <div id="loading"></div> -->
+            </label>
+            <p>Drag and drop a file or click</p>
+            
+        </div>
+        <div class="preview-area">
+          <img class="image-preview" id="file-preview">
+          <img id="loading" src={{url_for('static', filename="loader.gif")}}>
+        </div>
+        <div class="js-upload-filename">ファイルが未選択です</div>
+        <div class="btn-group" role="group">
+          <button type="submit" id="submit-btn">Predict</button>
+          <button type="button" id="cancel-btn">Cancel</button>
+          <!-- <input type="submit" id="submit-btn" value="キャンセル"> -->
+        </div>
+      </form>
+    </div>
+
+  {% else %}
+      <div class="container_predict">
+        <div class="starter-template">
+          <h1>Bootstrap starter template</h1>
+          <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+        </div>
+
+        <form class="form-upload" id="target" action="" method="GET" enctype="multipart/form-data">
+          <div class="preview-area">
+              <img class="image-preview" id="file-preview" src="{{ url_for('static', filename='predicts/')}}{{ img_name }}">
+          </div>
+          <div class="js-upload-filename">{{ img_name }}</div>
+          <button type="button" id="cancel-btn">back</button>
+        </form>
+      </div>
+  {% endif %}
+      
+{% endblock bodyblock %}
